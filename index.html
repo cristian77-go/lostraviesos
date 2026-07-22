@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tienda Los Traviesos - Alto Magdalena</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* ===== RESET Y BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            color: #2d3436;
+            scroll-behavior: smooth;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(135deg, #f093fb, #f5576c, #ffecd2);
+            padding: 20px 0;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+            letter-spacing: 2px;
+        }
+
+        header h1 i {
+            margin-right: 15px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* ===== NAVEGACIÓN ===== */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 12px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 110px;
+            z-index: 99;
+            backdrop-filter: blur(10px);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #2d3436;
+            font-weight: 600;
+            padding: 10px 25px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav ul li a:hover {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 87, 108, 0.3);
+        }
+
+        nav ul li a i {
+            font-size: 1.1rem;
+        }
+
+        /* ===== CONTENEDOR PRINCIPAL ===== */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* ===== SECCIÓN ===== */
+        .section {
+            background: white;
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #2d3436;
+        }
+
+        .section-title i {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            padding: 12px;
+            border-radius: 15px;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .section-subtitle {
+            color: #636e72;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        /* ===== CARRUSEL / IMÁGENES EN MOVIMIENTO ===== */
+        .carousel-container {
+            overflow: hidden;
+            border-radius: 20px;
+            position: relative;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel {
+            display: flex;
+            animation: slide 20s infinite;
+            width: 300%;
+        }
+
+        .carousel img {
+            width: 33.33%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+
+        @keyframes slide {
+            0%, 25% { transform: translateX(0); }
+            33%, 58% { transform: translateX(-33.33%); }
+            66%, 91% { transform: translateX(-66.66%); }
+            100% { transform: translateX(0); }
+        }
+
+        /* ===== PROMOCIONES ===== */
+        .promociones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .promo-card {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .promo-card:hover {
+            transform: scale(1.05) rotate(-2deg);
+            box-shadow: 0 10px 30px rgba(253, 203, 110, 0.4);
+        }
+
+        .promo-card i {
+            font-size: 3rem;
+            color: #e17055;
+            margin-bottom: 10px;
+        }
+
+        .promo-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .promo-card .precio {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #d63031;
+        }
+
+        .promo-card .precio span {
+            font-size: 1rem;
+            text-decoration: line-through;
+            color: #636e72;
+            font-weight: 400;
+            margin-left: 10px;
+        }
+
+        /* ===== PRODUCTOS ===== */
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .producto-card {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .producto-card:hover {
+            border-color: #f5576c;
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.15);
+        }
+
+        .producto-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 12px;
+        }
+
+        .producto-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .producto-card .precio-producto {
+            color: #e17055;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .producto-card .btn-agregar {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .producto-card .btn-agregar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 206, 201, 0.4);
+        }
+
+        /* ===== INVENTARIO ===== */
+        .inventario-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .inventario-table th {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .inventario-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #dfe6e9;
+        }
+
+        .inventario-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .inventario-table .stock {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .stock-disponible {
+            background: #00b894;
+            color: white;
+        }
+
+        .stock-poco {
+            background: #fdcb6e;
+            color: #2d3436;
+        }
+
+        .stock-agotado {
+            background: #fd79a8;
+            color: white;
+        }
+
+        /* ===== CONTACTO ===== */
+        .contacto-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .contacto-item {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contacto-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .contacto-item i {
+            font-size: 2.5rem;
+            color: #f5576c;
+            margin-bottom: 10px;
+        }
+
+        .contacto-item h4 {
+            font-size: 1rem;
+            color: #636e72;
+        }
+
+        .contacto-item p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3436;
+        }
+
+        /* ===== MAPA ===== */
+        .mapa-container {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            margin-top: 15px;
+        }
+
+        .mapa-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        /* ===== BOTÓN WHATSAPP FLOTANTE ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: white;
+            padding: 18px 22px;
+            border-radius: 60px;
+            font-size: 1.8rem;
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-float span {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #2d3436;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        footer .social {
+            margin-top: 15px;
+        }
+
+        footer .social a {
+            color: white;
+            margin: 0 15px;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        footer .social a:hover {
+            color: #f5576c;
+            transform: scale(1.2);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav ul li a {
+                padding: 8px 15px;
+                font-size: 0.85rem;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .carousel img {
+                height: 200px;
+            }
+
+            .promociones-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .whatsapp-float {
+                padding: 12px 16px;
+                font-size: 1.4rem;
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .whatsapp-float span {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .productos-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .inventario-table {
+                font-size: 0.8rem;
+            }
+
+            .inventario-table th,
+            .inventario-table td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <h1><i class="fas fa-store"></i> Tienda Los Traviesos</h1>
+        <p><i class="fas fa-map-marker-alt"></i> El Alto Magdalena - ¡Tu tienda de confianza!</p>
+    </header>
+
+    <!-- ===== NAVEGACIÓN ===== -->
+    <nav>
+        <ul>
+            <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="#promociones"><i class="fas fa-tags"></i> Promociones</a></li>
+            <li><a href="#productos"><i class="fas fa-box"></i> Productos</a></li>
+            <li><a href="#inventario"><i class="fas fa-clipboard-list"></i> Inventario</a></li>
+            <li><a href="#contacto"><i class="fas fa-phone"></i> Contacto</a></li>
+            <li><a href="#ubicacion"><i class="fas fa-map"></i> Ubicación</a></li>
+        </ul>
+    </nav>
+
+    <!-- ===== CONTENIDO ===== -->
+    <div class="container">
+
+        <!-- ===== SECCIÓN INICIO ===== -->
+        <section class="section" id="inicio">
+            <h2 class="section-title"><i class="fas fa-store-alt"></i> Bienvenidos</h2>
+            <p class="section-subtitle">Descubre nuestras promociones, productos y servicios en El Alto Magdalena</p>
+
+            <!-- CARRUSEL DE IMÁGENES EN MOVIMIENTO -->
+            <div class="carousel-container">
+                <div class="carousel">
+                    <img src="https://images.unsplash.com/photo-1534723452862-4c874018d66d?w=800&h=400&fit=crop" alt="Tienda de abarrotes" />
+                    <img src="https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&h=400&fit=crop" alt="Productos en estantería" />
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=400&fit=crop" alt="Tienda local" />
+                </div>
+            </div>
+            <p style="margin-top: 15px; color: #636e72; text-align: center;">
+                <i class="fas fa-images"></i> Conoce nuestro local y productos
+            </p>
+        </section>
+
+        <!-- ===== SECCIÓN PROMOCIONES ===== -->
+        <section class="section" id="promociones">
+            <h2 class="section-title"><i class="fas fa-tags"></i> Promociones Especiales</h2>
+            <p class="section-subtitle">¡Aprovecha estas ofertas increíbles!</p>
+            <div class="promociones-grid">
+                <div class="promo-card">
+                    <i class="fas fa-cookie"></i>
+                    <h3>Galletas + Gaseosa</h3>
+                    <p>Pack familiar</p>
+                    <div class="precio">$8.500 <span>$12.000</span></div>
+                </div>
+                <div class="promo-card">
+                    <i class="fas fa-bread"></i>
+                    <h3>Pan + Café</h3>
+                    <p>Desayuno completo</p>
+                    <div class="precio">$5.000 <span>$7.500</span></div>
+                </div>
+                <div class="promo-card">
+                    <i class="fas fa-wine-bottle"></i>
+                    <h3>Gaseosa 3x2</h3>
+                    <p>Lleva 3 paga 2</p>
+                    <div class="precio">$6.000 <span>$9.000</span></div>
+                </div>
+                <div class="promo-card">
+                    <i class="fas fa-egg"></i>
+                    <h3>Huevos + Queso</h3>
+                    <p>Descuento especial</p>
+                    <div class="precio">$7.200 <span>$10.000</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SECCIÓN PRODUCTOS ===== -->
+        <section class="section" id="productos">
+            <h2 class="section-title"><i class="fas fa-box"></i> Nuestros Productos</h2>
+            <p class="section-subtitle">Calidad y variedad para tu hogar</p>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&h=200&fit=crop" alt="Arroz" />
+                    <h4>Arroz 1kg</h4>
+                    <p class="precio-producto">$4.200</p>
+                    <button class="btn-agregar"><i class="fas fa-cart-plus"></i> Agregar</button>
+                </div>
+                <div class="producto-card">
+                    <img src="https://images.unsplash.com/photo-1622484212108-6db3c8e62b29?w=300&h=200&fit=crop" alt="Aceite" />
+                    <h4>Aceite 1L</h4>
+                    <p class="precio-producto">$6.800</p>
+                    <button class="btn-agregar"><i class="fas fa-cart-plus"></i> Agregar</button>
+                </div>
+                <div class="producto-card">
+                    <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300&h=200&fit=crop" alt="Pasta" />
+                    <h4>Pasta 500g</h4>
+                    <p class="precio-producto">$3.500</p>
+                    <button class="btn-agregar"><i class="fas fa-cart-plus"></i> Agregar</button>
+                </div>
+                <div class="producto-card">
+                    <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=300&h=200&fit=crop" alt="Leche" />
+                    <h4>Leche 1L</h4>
+                    <p class="precio-producto">$4.500</p>
+                    <button class="btn-agregar"><i class="fas fa-cart-plus"></i> Agregar</button>
+                </div>
+                <div class="producto-card">
+                    <img src="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300&h=200&fit=crop" alt="Pan" />
+                    <h4>Pan de molde</h4>
+                    <p class="precio-producto">$3.200</p>
+                    <button class="btn-agregar"><i class="fas fa-cart-plus"></i> Agregar</button>
+                </div>
+                <div class="producto-card">
+                    <img src="https://images.unsplash.com/photo-1559561853-08451507cbe7?w=300&h=200&fit=crop" alt="Bebidas" />
+                    <h4>Gaseosa 2.5L</h4>
+                    <p class="precio-producto">$4.800</p>
+                    <button class="btn-agregar"><i class="fas fa-cart-plus"></i> Agregar</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SECCIÓN INVENTARIO ===== -->
+        <section class="section" id="inventario">
+            <h2 class="section-title"><i class="fas fa-clipboard-list"></i> Inventario</h2>
+            <p class="section-subtitle">Consulta el stock de nuestros productos</p>
+
+            <table class="inventario-table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Categoría</th>
+                        <th>Cantidad</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Arroz 1kg</td>
+                        <td>Granos</td>
+                        <td>150</td>
+                        <td><span class="stock stock-disponible">Disponible</span></td>
+                    </tr>
+                    <tr>
+                        <td>Aceite 1L</td>
+                        <td>Aceites</td>
+                        <td>80</td>
+                        <td><span class="stock stock-disponible">Disponible</span></td>
+                    </tr>
+                    <tr>
+                        <td>Pasta 500g</td>
+                        <td>Pastas</td>
+                        <td>120</td>
+                        <td><span class="stock stock-disponible">Disponible</span></td>
+                    </tr>
+                    <tr>
+                        <td>Leche 1L</td>
+                        <td>Lácteos</td>
+                        <td>45</td>
+                        <td><span class="stock stock-poco">Poco stock</span></td>
+                    </tr>
+                    <tr>
+                        <td>Pan de molde</td>
+                        <td>Panadería</td>
+                        <td>30</td>
+                        <td><span class="stock stock-poco">Poco stock</span></td>
+                    </tr>
+                    <tr>
+                        <td>Gaseosa 2.5L</td>
+                        <td>Bebidas</td>
+                        <td>0</td>
+                        <td><span class="stock stock-agotado">Agotado</span></td>
+                    </tr>
+                    <tr>
+                        <td>Huevos (docena)</td>
+                        <td>Lácteos</td>
+                        <td>200</td>
+                        <td><span class="stock stock-disponible">Disponible</span></td>
+                    </tr>
+                    <tr>
+                        <td>Queso 500g</td>
+                        <td>Lácteos</td>
+                        <td>25</td>
+                        <td><span class="stock stock-poco">Poco stock</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ===== SECCIÓN CONTACTO ===== -->
+        <section class="section" id="contacto">
+            <h2 class="section-title"><i class="fas fa-phone"></i> Contacto y Domicilios</h2>
+            <p class="section-subtitle">¡Haz tu pedido y recíbelo en casa!</p>
+
+            <div class="contacto-info">
+                <div class="contacto-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <h4>Teléfono</h4>
+                    <p>+57 312 345 6789</p>
+                </div>
+                <div class="contacto-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <h4>WhatsApp</h4>
+                    <p>+57 312 345 6789</p>
+                </div>
+                <div class="contacto-item">
+                    <i class="fas fa-clock"></i>
+                    <h4>Horario</h4>
+                    <p>Lun-Sáb: 7am - 9pm</p>
+                </div>
+                <div class="contacto-item">
+                    <i class="fas fa-truck"></i>
+                    <h4>Domicilios</h4>
+                    <p>¡Gratis en El Alto!</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 25px;">
+                <a href="https://wa.me/573123456789" target="_blank" style="
+                    background: linear-gradient(135deg, #25d366, #128C7E);
+                    color: white;
+                    padding: 15px 40px;
+                    border-radius: 50px;
+                    text-decoration: none;
+                    font-weight: 700;
+                    font-size: 1.2rem;
+                    display: inline-block;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.3);
+                ">
+                    <i class="fab fa-whatsapp"></i> ¡Pide por WhatsApp!
+                </a>
+            </div>
+        </section>
+
+        <!-- ===== SECCIÓN UBICACIÓN ===== -->
+        <section class="section" id="ubicacion">
+            <h2 class="section-title"><i class="fas fa-map"></i> Ubicación</h2>
+            <p class="section-subtitle">Encuéntranos en El Alto Magdalena</p>
+
+            <div class="mapa-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.2160192760257!2d-74.2320246!3d4.7021165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9c1e6b5a3e7d%3A0x8b5a3e7d6b5a3e7d!2sAlto%20Magdalena!5e0!3m2!1ses!2sco!4v1700000000000" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+            <p style="margin-top: 15px; color: #636e72; text-align: center;">
+                <i class="fas fa-location-dot"></i> Calle Principal #12-34, El Alto Magdalena
+            </p>
+        </section>
+
+    </div>
+
+    <!-- ===== BOTÓN WHATSAPP FLOTANTE ===== -->
+    <a href="https://wa.me/573123456789" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+        <span>¡Pide ya!</span>
+    </a>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p><i class="fas fa-store"></i> Tienda Los Traviesos - El Alto Magdalena</p>
+        <p style="font-size: 0.9rem; opacity: 0.6;">© 2024 - Todos los derechos reservados</p>
+        <div class="social">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/573123456789" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPT INTERACTIVO ===== -->
+    <script>
+        // Mensaje al agregar productos
+        document.querySelectorAll('.btn-agregar').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const producto = this.closest('.producto-card').querySelector('h4').textContent;
+                alert(`✅ ¡${producto} agregado al carrito!`);
+                this.innerHTML = '<i class="fas fa-check"></i> Agregado';
+                this.style.background = 'linear-gradient(135deg, #00b894, #00cec9)';
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-cart-plus"></i> Agregar';
+                    this.style.background = 'linear-gradient(135deg, #00b894, #00cec9)';
+                }, 2000);
+            });
+        });
+
+        // Click en promociones
+        document.querySelectorAll('.promo-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const titulo = this.querySelector('h3').textContent;
+                alert(`🎉 ¡Aprovecha la promoción de ${titulo}!`);
+            });
+        });
+
+        // Click en productos (para ver detalles)
+        document.querySelectorAll('.producto-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (e.target.classList.contains('btn-agregar')) return;
+                const nombre = this.querySelector('h4').textContent;
+                const precio = this.querySelector('.precio-producto').textContent;
+                alert(`📦 ${nombre}\n💰 Precio: ${precio}\n\n¿Quieres agregarlo al carrito?`);
+            });
+        });
+
+        // Smooth scroll para navegación
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        console.log('🛒 Tienda Los Traviesos - ¡Bienvenidos!');
+    </script>
+
+</body>
+</html>
